@@ -6,7 +6,15 @@
  * @returns {number} The sum
  */
 function sum(array) {
-  // This is your job. :)
+  // Using reduce:
+  // return array.reduce((a,b) => a+b);
+
+  // Manually
+  let runningTotal = 0;
+  for (let item of array) {
+    runningTotal += item;
+  }
+  return runningTotal;
 }
 
 if (require.main === module) {
@@ -14,6 +22,32 @@ if (require.main === module) {
 
   // Add your own sanity checks here.
   // How else will you be sure your code does what you think it does?
+  let tests = [
+    {
+      array: [1,2,3,4,5],
+      expected: 15
+    },
+    {
+      array: [-2,-1,0,1,2],
+      expected: 0
+    },
+    {
+      array: [0,0,0,0,0],
+      expected: 0,
+    },
+    {
+      array: [-1,-2,-3,-4,-5],
+      expected: -15
+    },
+    {
+      array: [10,10,10,-10,-10,-10],
+      expected: 0
+    }
+  ];
+
+  for (let test of tests) {
+    console.log(sum(test.array) === test.expected);
+  }
 }
 
 module.exports = sum;
