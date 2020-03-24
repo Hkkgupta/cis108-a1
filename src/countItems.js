@@ -12,7 +12,16 @@
  *  string in the input array
  */
 function countItems(array) {
-  // This is your job. :)
+  const frequencyDict = {};
+
+  for (let item of array) {
+    if (frequencyDict.hasOwnProperty(item)) {
+      frequencyDict[item] += 1;
+    } else {
+      frequencyDict[item] = 1;
+    }
+  }
+  return frequencyDict;
 }
 
 if (require.main === module) {
@@ -20,6 +29,27 @@ if (require.main === module) {
 
   // Add your own sanity checks here.
   // How else will you be sure your code does what you think it does?
+  let tests = [
+    {
+      array: ['apple', 'orange', 'apple', 'banana'],
+      expected: {'apple': 2, 'orange': 1, 'banana': 1}
+    },
+    {
+      array: ['a','a','b','c','c','d','e','e'],
+      expected: {'a': 2,'b': 1,'c': 2,'d': 1,'e': 2}
+    }
+  ];
+
+  for (let test of tests) {
+    let valid = true;
+    let output = countItems(test.array);
+    for (let item in output) {
+      if (output[item] !== test.expected[item]) {
+        valid = false;
+      }
+    }
+    console.log(valid);
+  }
 }
 
 module.exports = countItems;
