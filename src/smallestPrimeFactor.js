@@ -12,20 +12,18 @@
  * @returns {number} The smallest prime factor of num
  */
 function smallestPrimeFactor(num) {
-  /* const primeFactors = [];
-  let workingNum = num;
-  for (let n = 2; n <= num/2; n++) {
-    while (workingNum % n === 0) {
-      primeFactors.push(n);
-      workingNum /= n;
-    }
 
-  } */
+  // Handle even number case
+  if (num % 2 === 0) {
+    return 2;
+  }
 
-  for (let n = 2; n <= num; n++) {
+  // Handle odd number cases
+  for (let n = 3; n <= num**(1/2); n += 2) {
     if (num % n === 0) {
       return n;
     }
+    return num;
   }
 }
 
